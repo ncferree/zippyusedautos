@@ -8,7 +8,7 @@
     
     $dsn = 'mysql:host=u6354r3es4optspf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=fhh2mtds55apjahi';
     $username = 'm2vonlmxsg2mgfij';
-    $password = 'vto8z0jpjodf2liz'; */
+    $password = 'vto8z0jpjodf2liz'; 
     
     try {
         //local development server connection
