@@ -69,6 +69,10 @@
     $firstname = filter_input(INPUT_GET,'firstname', FILTER_SANITIZE_STRING);
         if (!empty($firstname)) {
             $_SESSION['userid'] = $firstname;
+            if ($firstname == NULL); {
+                $error = "Please enter your first name to register.";
+                include('view/error.php');
+            }
         }
 
     switch ($action) {
