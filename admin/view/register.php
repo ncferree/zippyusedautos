@@ -1,6 +1,6 @@
 <?php include 'view/header.php'; ?>
 
-<!--<p><?=$errors?></p>-->
+<?=$errors?>
 
 <form action="." method="post" class="add_vehicle_form">
     <input type="hidden" name="action" value="register">
