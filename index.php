@@ -1,9 +1,9 @@
 <?php
 
     //Cookies Session Start
-    $lifetime = 60 * 60 * 24 *365;
-    session_set_cookie_params ($lifetime, '/');
-    session_start();
+    //$lifetime = 60 * 60 * 24 *365;
+    //session_set_cookie_params ($lifetime, '/');
+    //session_start();
 
     // Model 
     require('model/database.php');
@@ -60,31 +60,31 @@
     }
 
     //register user action
-    $action=filter_input(INPUT_GET, 'action');
-        if ($action === NULL) {
-                $action = 'register';
+    // $action=filter_input(INPUT_GET, 'action');
+    //     if ($action === NULL) {
+    //             $action = 'register';
             
-        }
+    //     }
 
-    $firstname = filter_input(INPUT_GET,'firstname', FILTER_SANITIZE_STRING);
-        if (!empty($firstname)) {
-            $_SESSION['userid'] = $firstname;
-            if ($firstname == NULL); {
-                $error = "Please enter your first name to register.";
-                include('view/error.php');
-            }
-        }
+    // $firstname = filter_input(INPUT_GET,'firstname', FILTER_SANITIZE_STRING);
+    //     if (!empty($firstname)) {
+    //         $_SESSION['userid'] = $firstname;
+    //         if ($firstname == NULL); {
+    //             $error = "Please enter your first name to register.";
+    //             include('view/error.php');
+    //         }
+    //     }
 
-    switch ($action) {
-        case 'register':
-            include('register.php');
-            header("Location: .?action=register");
-            break;
-        default: 
-            $vehicles=get_all_vehicles($sort);
-            include('view/vehicle_list.php');
-            break;
-    }
+    // switch ($action) {
+    //     case 'register':
+    //         include('register.php');
+    //         header("Location: .?action=register");
+    //         break;
+    //     default: 
+    //         $vehicles=get_all_vehicles($sort);
+    //         include('view/vehicle_list.php');
+    //         break;
+    // }
 
     include('view/vehicle_list.php');
         

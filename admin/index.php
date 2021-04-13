@@ -62,3 +62,16 @@
         $action === 'add_vehicle' ||
         $action === 'delete_vehicle' ||
         $action === 'list_vehicles') include('controllers/vehicles.php');
+
+    //Recieve Parameters
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $confirm_password = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+
+    // Route to new subcontroller (admin.php)
+    if ($action === 'login' || 
+        $action === 'show_login' || 
+        $action === 'register' || 
+        $action === 'show_register' || 
+        $action === 'logout') include('controllers/admin.php');
+  
