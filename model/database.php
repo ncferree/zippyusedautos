@@ -1,14 +1,14 @@
 <?php
     //local development server connection
-    $dsn = 'mysql:host=localhost;dbname=zippyusedautos';
+   $dsn = 'mysql:host=localhost;dbname=zippyusedautos';
     $username = 'root';
-    //$password = 'pa55word';
+    //$password = 'passowrd';
 
     // Heroku connection
-    /* 
-    $dsn = 'mysql:host=AVeryLongURLprovidedforJawsDBhost;dbname=YourJawsDBdbname';
-    $username = 'Your JawsDB username';
-    $password = 'Your JawsDB password'; */
+    
+    $dsn = 'mysql:host=u6354r3es4optspf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=fhh2mtds55apjahi';
+    $username = 'm2vonlmxsg2mgfij';
+    $password = 'vto8z0jpjodf2liz'; 
     
     try {
         //local development server connection
@@ -16,7 +16,7 @@
         $db = new PDO($dsn, $username);
 
         // Heroku connection
-        //$db = new PDO($dsn, $username, $password);
+        $db = new PDO($dsn, $username, $password);
     } catch (PDOException $e) {
         $error = "Database Error: ";
         $error .= $e->getMessage();
