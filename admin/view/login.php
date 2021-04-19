@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Zippy Admin</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
 </head>
-<body>
-    <p><?=$login_message?> </p>
 
-    <form action="." method="post" class="add_vehicle_form"> 
-    <input type="hidden" name="action" value="login">
-        <div>
-            <label>Username: </label>
-            <input type="text" placeholder="" name="action" value="username">
-            <label>Password: </label>
-            <input type="text" placeholder="" name="action" value="password" >
-            <input type="submit">
-        </div>
-        
-    </form>
+<body>
+    <main>
+        <header>
+            <h1>Zippy Admin</h1>
+        </header>
+        <section class="admin-login">
+            <?php if (!empty($login_message)) { ?>
+                <h2 style="<?= $login_message_style ?>">
+                        <?= $login_message ?>
+                </h2>
+            <?php } else { ?>
+                <h2>Please fill in your credentials to login.</h2>
+            <?php } ?>
+            <form action="." method="POST" class="admin_login_form">
+                <input type="hidden" name="action" value="login">
+                
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" autofocus required>
+                
+                
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" required>
+                
+                
+                    <input type="submit" class="button blue" value="Sign In">
+                
+            </form>
+        </section>
+    </main>
 </body>
 </html>

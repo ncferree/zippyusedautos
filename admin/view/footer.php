@@ -22,6 +22,7 @@
     <p><a href=".?action=list_classes">View/Edit Vehicle Classes</a></p>
     <?php } ?>
     <p><a href=".?action=show_register">Register New Admin User</a></p>
+    <p><a href=".?action=logout">Logout</a></p>
 </div>
 
 <footer>

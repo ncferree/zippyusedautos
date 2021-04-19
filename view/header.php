@@ -9,13 +9,23 @@
 </head>
 
 <body>
-    <main>
-    <?php if($action != 'register' && !isset($_SESSION['userid'])) { ?>
-            <a href=".?action=register">Register</a>
-        <?php } else if($action != 'register' && $action != 'logout' && isset($_SESSION['userid'])) { $fname = $_SESSION['userid']; ?>
-            <p>Hello <?php echo '$firstname'; ?>(<a href=".?action=logout">Logout</a>) </p>
-        <?php } ?>
-        <header>
-            <h1>Zippy Used Autos</h1>
-            <a href=".?action=register">Register</a>
-        </header>
+<main>
+    <header>
+        <h1>Zippy Used Autos</h1>
+        <div class="register">
+
+            <?php if (!isset($_SESSION['userid']) && $action !== 'register') { ?>
+
+                <a href=".?action=register">Register</a>
+
+            <?php } else if (isset($_SESSION['userid']) && $action !== 'register' && $action !== 'logout') { 
+                    $userid = $_SESSION['userid'];
+            ?>
+
+            <p>
+                Welcome <?= $userid ?>! (<a href=".?action=logout">Sign Out</a>)
+            </p>
+
+            <?php } ?>
+        </div>
+    </header>

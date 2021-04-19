@@ -1,9 +1,9 @@
 <?php
 
     //Cookies Session Start
-    //$lifetime = 60 * 60 * 24 *365;
-    //session_set_cookie_params ($lifetime, '/');
-    //session_start();
+    $lifetime = 60 * 60 * 24 *365; //one year
+    session_set_cookie_params ($lifetime, '/');
+    session_start();
 
     // Model 
     require('model/database.php');
@@ -17,6 +17,10 @@
     $classes = get_classes();
     $makes = get_makes();
 
+     // Get Parameter data sent to Controller
+     $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+     $firstname = filter_input(INPUT_GET, 'firstname', FILTER_SANITIZE_STRING);
+
     // Get Parameter data sent to Controller
     $make_id = filter_input(INPUT_GET, 'make_id', FILTER_VALIDATE_INT);
     $type_id = filter_input(INPUT_GET, 'type_id', FILTER_VALIDATE_INT);
@@ -24,22 +28,10 @@
     $sort = filter_input(INPUT_GET, 'sort', FILTER_SANITIZE_STRING);
     if (!$sort) $sort = 'price';
 
-    // Get Data for View
-    /* if ($make_id) {
-        $make_name = get_make_name($make_id);
-        $vehicles = get_vehicles_by_make($make_id, $sort);
-    } else if ($type_id) {
-        $type_name = get_type_name($type_id);
-        $vehicles = get_vehicles_by_type($type_id, $sort);
-    } else if ($class_id) {
-        $class_name = get_class_name($class_id);
-        $vehicles = get_vehicles_by_class($class_id, $sort);
-    } else {
-        $vehicles = get_all_vehicles($sort);
-    } */
 
-    // Extra credit solution 
+    //get vehicles
     $vehicles = get_all_vehicles($sort);
+    //filter vehicles
     if ($make_id) {
         $make_name = get_make_name($make_id);
         $vehicles = array_filter($vehicles, function($array) use ($make_name) {
@@ -59,32 +51,20 @@
         });
     }
 
-    //register user action
-    // $action=filter_input(INPUT_GET, 'action');
-    //     if ($action === NULL) {
-    //             $action = 'register';
-            
-    //     }
-
-    // $firstname = filter_input(INPUT_GET,'firstname', FILTER_SANITIZE_STRING);
-    //     if (!empty($firstname)) {
-    //         $_SESSION['userid'] = $firstname;
-    //         if ($firstname == NULL); {
-    //             $error = "Please enter your first name to register.";
-    //             include('view/error.php');
-    //         }
-    //     }
-
-    // switch ($action) {
-    //     case 'register':
-    //         include('register.php');
-    //         header("Location: .?action=register");
-    //         break;
-    //     default: 
-    //         $vehicles=get_all_vehicles($sort);
-    //         include('view/vehicle_list.php');
-    //         break;
-    // }
+    if ($firstname) { 
+        $_SESSION['userid'] = $firstname;
+    }
+   
+    switch($action) {
+        case 'register':
+            include('view/register.php');
+            break;
+        case 'logout':
+            include('view/logout.php');
+            break;
+        default:
+            include('view/vehicle_list.php');
+        }
 
     include('view/vehicle_list.php');
         

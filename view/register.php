@@ -1,20 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <form action= "." method="get">
-        <input type="hidden" name="action" value="register"><br>
+<?php include('header.php'); ?>
 
-        <label>First Name: </label>
-        <input type="text" name="first_name" required><br>
-        
-        <input type="submit" value="Register"><br>
-    </form>
-    
-</body>
-</html>
+<?php if (!$firstname) { ?>
+
+<form action="." method="GET" class="register_form">
+    <input type="hidden" name="action" value="register">
+    <label for="firstname">Please enter your first name:</label>
+    <input type="text" id="firstname" name="firstname" maxlength="50" required>
+    <input type="submit" value="Register" class="button blue">
+</form>
+
+<?php } else { ?>
+    <br>
+    <h1 class="thank_you">Thank you for registering, <?= $firstname ?>!</h1>
+    <br>
+    <p><a href=".">Click here</a> to view our vehicle list.</p>
+    <br>
+<?php } ?>
+<?php include('footer.php'); ?>

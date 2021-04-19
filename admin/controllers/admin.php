@@ -1,50 +1,41 @@
 <?php
 
-require_once('../model/database.php');
-require_once('../model/admin_db.php');
-
-
-switch ($action) {
-    case 'logout': {
-        $_SESSION = array();
+switch($action) {
+    case 'logout':
+        $_SESSION = array(); 
         session_destroy();
-        $login_message = 'You have been logged out.';
-        include('./view/login.php');
+        $login_message = "You have been logged out.";
+        include('view/login.php');
         break;
-    }
-    case 'show_register': {
-        include('./view/register.php');
-        break;
-    }
-    case 'show_login': 
-        include('./view/login.php');
-        break;
+    case 'register':
+        // Including Utility Functions for Registration
+        include('util/valid_register.php');
+        $errors = valid_registration($username, $password, $confirm_password);
 
-    case 'login': {
-        $username = filter_input(INPUT_POST, 'username');
-        $passowrd = filter_input(INPUT_POST, 'password');
-        if (is_valid_admin($username, $passowrd)) {
-            $_SESSION['is_valid_admin'] = true;
-            header("Location: ./view/vehicle_list.php");
+        // errors exist or success
+        if ($errors) {
+            include('view/register.php');
         } else {
-            $login_message = 'You must login to view this page.';
-            include('./view/login.php');
-        }
-    }
-    case 'register': {
-        include('./util/valid_register.php');
-        valid_registration($username, $password, $confirm_password);
-        if (!empty($errors)) {
-            include('./view/register.php');
-        } else {
+            // store new user id and password
             add_admin($username, $password);
+            // allow user to view admin area
             $_SESSION['is_valid_admin'] = true;
-            header("Location: ./view/vehicle_list.php");
+            header("Location: .?action=list_vehicles");
         }
-
-    }
-    
-
-
-    
-} 
+        break;
+    case 'login':
+        if (is_valid_admin($username, $password)) {
+            $_SESSION['is_valid_admin'] = true;
+            header("Location: .?action=list_vehicles");
+        } else {
+            $login_message = 'Incorrect Login / Login Required.';
+            $login_message_style = 'color: red;';
+            include('view/login.php');
+        }
+        break;
+    case 'show_register':
+        include('view/register.php');
+        break;
+    case 'show_login':
+        include('view/login.php');
+}

@@ -37,12 +37,29 @@ select {
 
 header {
   border-bottom: 2px solid black;
+  position: relative;
 }
 
 header h1 {
   padding: 0.5em 0.25em;
   color: black;
   font-size: 150%;
+}
+
+.register {
+  position: absolute;
+  top: 2%;
+  right: 1%;
+}
+.register_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 1em 0.25em;
+}
+.thank_you {
+  color: rgb(208, 133, 4);
 }
 
 h2 {
@@ -97,6 +114,12 @@ footer p {
   padding: 5px;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:active, .button:focus {
+  outline: none;
 }
 
 .blue {
@@ -111,6 +134,7 @@ footer p {
 
 .zippylinks {
   padding: 0 10px 10px;
+  font-size: 0.75rem;
 }
 .zippylinks p {
   margin-bottom: 5px;
@@ -224,6 +248,17 @@ th {
   max-width: 400px;
 }
 
+.admin_login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin_login_form input, 
+.admin_login_form label {
+  font-size: 1.5rem;
+}
+
 /********************************************************************
 * Media Queries
 ********************************************************************/
@@ -322,6 +357,7 @@ th {
   .zippylinks {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 20px;
   }
 }
 

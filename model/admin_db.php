@@ -29,17 +29,11 @@
     //Function to see if username exists
     function username_exists($username) {
         global $db;
-        $query = 'SELECT COUNT * FROM administrators' ;
+        $query = 'SELECT COUNT (*) FROM administrators' ;
         $statement = $db->prepare($query);
         $statement->bindValue(':username', $username);
         $statement->execute();
         $result = $statement->fetchColumn();
-        $statement->closeCursor();
         return $result;
-            if ($result != 0) {
-                $result = true;
-            } else { $result == 0; 
-                    $result = false;
-            }
     }
     
