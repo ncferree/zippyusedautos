@@ -6,9 +6,9 @@
 
     // Heroku connection
     
-    $dsn = 'mysql:host=u6354r3es4optspf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=fhh2mtds55apjahi';
-    $username = 'm2vonlmxsg2mgfij';
-    $password = 'vto8z0jpjodf2liz'; 
+   // $dsn = 'mysql:host=u6354r3es4optspf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=fhh2mtds55apjahi';
+    //$username = 'm2vonlmxsg2mgfij';
+   // $password = 'vto8z0jpjodf2liz'; 
     
     try {
         //local development server connection
@@ -16,11 +16,11 @@
         $db = new PDO($dsn, $username);
 
         // Heroku connection
-        $db = new PDO($dsn, $username, $password);
+       // $db = new PDO($dsn, $username, $password);
     } catch (PDOException $e) {
         $error = "Database Error: ";
         $error .= $e->getMessage();
-        include('../view/error.php');
+        include('./view/error.php');
         exit();
     }
 ?>
