@@ -1,7 +1,7 @@
 <?php
     //local development server connection
-   $dsn = 'mysql:host=localhost;dbname=zippyusedautos';
-    $username = 'root';
+   //$dsn = 'mysql:host=localhost;dbname=zippyusedautos';
+   // $username = 'root';
     //$password = 'passowrd';
 
     // Heroku connection
@@ -13,7 +13,7 @@
     try {
         //local development server connection
         //if using a $password, add it as 3rd parameter
-        $db = new PDO($dsn, $username);
+        //$db = new PDO($dsn, $username);
 
         // Heroku connection
        // $db = new PDO($dsn, $username, $password);
