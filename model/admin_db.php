@@ -1,7 +1,8 @@
 <?php
+class AdminDB {
     //function to register a new admin
-    function add_admin($username, $password) {
-        global $db;
+    public static function add_admin($username, $password) {
+        $db = Database::getDB();
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $query = 'INSERT INTO administrators (username, password)
                     VALUES (:username, :password)';
@@ -13,8 +14,8 @@
     }
 
     //function to see is password and username are valid
-    function is_valid_admin($username, $password) {
-        global $db;
+    public static function is_valid_admin($username, $password) {
+        $db = Database::getDB();
         $query = 'SELECT password FROM administrators 
                     WHERE username = :username';
         $statement = $db ->prepare($query);
@@ -27,8 +28,8 @@
     }
 
     //Function to see if username exists
-    function username_exists($username) {
-        global $db;
+    public static function username_exists($username) {
+        $db = Database::getDB();
         $query = "SELECT COUNT(*) FROM administrators WHERE username = :username";
         $statement = $db->prepare($query);
         $statement->bindParam(':username', $username);
@@ -36,4 +37,5 @@
         $result = $statement->fetchColumn();
         return $result;
     }
+}
     
