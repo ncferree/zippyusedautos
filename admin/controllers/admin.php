@@ -10,7 +10,7 @@ switch($action) {
     case 'register':
         // Including Utility Functions for Registration
         include('util/valid_register.php');
-        $errors = valid_registration($username, $password, $confirm_password);
+        $errors = self::valid_registration($username, $password, $confirm_password);
         if (AdminDB::username_exists($username)) {
             array_push($errors, "The username you entered is already taken.");
         }
